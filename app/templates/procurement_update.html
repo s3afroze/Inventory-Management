@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+
+<h2> Update your entry </h2>
+
+<br>
+<br>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/procurement_update_entry/[{{ product.id }}, {{ procurement.date }}]" method="post">
+                        <div class="form-group" style="text-align:left;">
+                            <label>Product: {{ product.name }}</label >
+                            <br>
+                            <label>Procurement Date</label>
+                            <input type="date" id="proc_date" name="proc_date" value= {{ procurement.date }} readonly>
+                            <br>
+                            <br>
+                            <label>Quantity Purchased</label>
+                            <input class="form-control" type="number" name="qty_purchased" placeholder="Qty Purchased" min="1" required value={{ procurement.quantity_purchased }}>
+                            <br>
+
+                        </div>
+                        
+                        <button class="btn btn-primary" type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

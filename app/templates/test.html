@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	      crossorigin="anonymous">
+
+	<script  src="{{ url_for('static', filename='js/database.js') }}"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}">
+	<!-- <meta http-equiv="refresh" content="4" /> -->
+
+</head>
+<body>
+	<br>
+	<br>
+	<h2> Live Database </h2>
+	<br>
+	<br>
+	<!-- <div>		 -->
+	    <!-- <div class="container"> -->
+		    
+		    <div class="row" style="text-align: left">
+		        <div class="col-xs-2 col-center-block">
+		            <div class="card">
+		                <div class="card-body">
+		                    <form action="/print_ent" method="post">
+		                        <div class="form-group">
+									<label for="entity">Choose Database Entity for printing:</label>
+									<select id="cars" name="carlist">
+									  <option value="Customer">Customer</option>
+									  <option value="Product">Product</option>
+									  <option value="Transaction">Transaction</option>
+									  <option value="Inventory">Inventory</option>
+									  <option value="Procurement">Procurement</option>
+									</select>
+		                            
+                       		   </div>
+
+		                        
+		                        <button class="btn btn-primary" type="submit">
+		                            Open
+		                        </button>
+
+		                    </form>
+		                </div>
+		            </div>
+
+		            </div>
+		        </div>
+		    </div>
+	</div>
+
+</body>
+</html>

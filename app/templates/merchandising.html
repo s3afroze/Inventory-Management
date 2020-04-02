@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	      crossorigin="anonymous">
+
+	<script  src="{{ url_for('static', filename='js/database.js') }}"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}">
+
+</head>
+<body>
+	<br>
+	<br>
+	<h2> Live Database </h2>
+	<br>
+	<br>
+	<!-- <div>		 -->
+	    <!-- <div class="container"> -->
+		    
+		    <div class="row">
+		        <div class="col-xs-2 col-center-block">
+		            <div class="card">
+		                <div class="card-body">
+		                    <form action="/merchandising_add" method="post">
+		                        <div class="form-group">
+<!-- 									<label for="birthday">Date:</label>
+		                            <input type="date" id="proc_date" name="proc_date" required> -->
+		                            <br>
+		                            <br>
+		                            <input class="form-control" type="text" name="prod_name" placeholder="Product Name" required>
+		                            <br>
+		                            <input class="form-control" type="number" name="unit_cost" placeholder="Unit Cost" min="1" step="0.01" required>
+		                            <br>
+		                            <input class="form-control" type="number" name="unit_price" placeholder="Unit Price" min="1" step="0.01" required>
+
+                       		   </div>
+		                        
+		                        <button class="btn btn-primary" type="submit">
+		                            Add
+		                        </button>
+
+		                        <button class="btn btn-primary" onclick="myFunction()">Show database</button>
+		                    </form>
+		                </div>
+		            </div>
+		        <!-- </div> -->
+
+		        <br>
+		        <br>
+
+		        <div id="myDIV">
+		            <div class="col-xs-2 col-center-block">
+		                <table class="table table-hover">
+		                    <thead>
+		                    <tr>
+		                        <th>Product Id</th>
+		                        <th>Product Name</th>
+		                        <th>Unit Cost</th>
+		                        <th>Unit Price</th>
+		                    </tr>
+		                    </thead>
+		                    <tbody>
+		                    {% for product in products %}
+		                    <tr {% if product.unit_cost >= product.sale_price %} class="apples" {% endif %} >
+		                        <td>{{ product.id }}</td>
+		                        <td><strong>{{ product.name }}</strong></td>
+		                        <td>{{ product.unit_cost }}</td>
+		                        <td>{{ product.sale_price }}</td>
+		                        <td>
+							    <span style="font-size: 0.8em; margin: 0 0 0 10px;" >
+									<a href="/merchandising_update/{{ product.id }}"><i class="fas fa-pencil-alt"></i></a>
+							    </span>
+						    	<span style="font-size: 0.8em; margin: 0 0 0 10px" >
+						      		<a href="/merchandising_delete/{{ product.id }}"><i class="fas fa-trash-alt"></i></i></a>
+					    		</span>
+		                        </td>
+		                    </tr>
+		                    {% endfor %}
+		                    </tbody>
+
+		                </table>
+		            </div>
+		        </div>
+		    </div>
+
+		<!-- </div> -->
+
+	</div>
+			    <br>
+		    <br>
+		    <br>
+</body>
+</html>

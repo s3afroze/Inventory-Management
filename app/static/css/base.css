@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap");
+:root {
+  --d: 700ms;
+  --e: cubic-bezier(0.19, 1, 0.22, 1);
+  --font-sans: 'Rubik', sans-serif;
+  --font-serif: 'Cardo', serif;
+}
+
+body{
+	background: black;	
+	margin: auto;
+	text-align: center;
+}
+
+.container{
+	text-align: center;
+	
+}
+#myDIV{
+	color: white;
+}
+.apples{
+	color: red;
+}
+h2{
+	color: white;
+	text-align: center;
+	font-family: var(--font-sans);
+	font-size: 2rem;
+	line-height: 1.2;
+	text-decoration: underline;
+}
+
+.col-center-block {
+    float: none;
+    display: block;
+    margin: 0 auto;
+    /* margin-left: auto; margin-right: auto; */
+}
+
+/*hover delete and edit option*/
+
+tbody>tr>:nth-child(4){ 
+/*color: black;*/
+/*border: none;*/
+/*text-align:left;*/
+width: 10%;
+}
+
+tbody>tr>:nth-child(4):hover{ 
+color: white;
+border: none;
+
+}
+
+td a{
+	color: white;
+}
+/*
+td a:hover{
+	color: white;
+}*/
+
+
+a .fa-trash-alt:hover{
+	color: red;
+}
+
+a .fa-pencil-alt:hover{
+	color: green;
+}

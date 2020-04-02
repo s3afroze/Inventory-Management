@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+
+<h2> Update your entry </h2>
+
+<br>
+<br>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/transaction_update_entry/[{{ transaction.customerid }}, {{ transaction.productid }}, {{ transaction.date }}]" method="post">
+                        <div class="form-group" style="text-align:left;">
+                            <label><b>Customer: </b>{{ customer.firstname }} {{ customer.lastname }}</label >
+                            <br>
+                            <label><b>Product: </b>{{ product.name }}</label >
+                            <br>
+                            <label>Sales Date</label>
+                            <input type="date" id="selling_date" name="selling_date" value= {{ transaction.date }} readonly>
+                            <br>
+                            <br>
+                            <label>Quantity Sold</label>
+                            <input class="form-control" type="number" name="quantity_sold" placeholder="Qty Sold" min="1" required value={{ transaction.quantity_sold }}>
+                            <br>
+
+                        </div>
+                        
+                        <button class="btn btn-primary" type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

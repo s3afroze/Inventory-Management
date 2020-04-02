@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+
+<h2> Update your entry </h2>
+
+<br>
+<br>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/merchandising_update_entry/{{ product.id }}" method="post">
+                        <div class="form-group" style="text-align:left;">
+                            <label>Product Name</label >
+                            <input class="form-control" type="text" name="prod_name" placeholder="Product Name" value="{{ product.name }}" required>
+                            <br>
+                            <label>Unit Cost</label >
+                            <input class="form-control" type="number" name="unit_cost" placeholder="Unit Cost" value="{{ product.unit_cost }}" step="0.01" required>
+
+                            <br>
+                            <label>Unit Price</label >
+                            <input class="form-control" type="number" name="sale_price" placeholder="Unit Price" value="{{ product.sale_price }}" step="0.01" required>
+                            <br>
+
+                        </div>
+                        
+                        <button class="btn btn-primary" type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

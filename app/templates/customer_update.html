@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+
+<h2> Update your entry </h2>
+
+<br>
+<br>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/customer_update_entry/{{ customer.id }}" method="post">
+                        <div class="form-group" style="text-align:left;">
+                            <label>First Name</label >
+                            <input type="text" name="firstname" value="{{ customer.firstname }}">
+                            <br>
+
+                            <label>Last Name</label >
+                            <input type="text" name="lastname" value="{{ customer.lastname }}">
+                            <br>
+
+                            <label>Street</label >
+                            <input type="text" name="street" value="{{ customer.street }}">
+                            <br>
+
+                            <label>City</label >
+                            <input type="text" name="city" value="{{ customer.city }}">
+                            <br>
+
+                            <label>Province</label >
+                            <input type="text" name="province" value="{{ customer.province }}">
+                            <br>
+
+                            <label>Zipcode</label >
+                            <input type="text" name="zipcode" value="{{ customer.zipcode }}">
+                            <br>
+
+
+                        </div>
+                        
+                        <button class="btn btn-primary" type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

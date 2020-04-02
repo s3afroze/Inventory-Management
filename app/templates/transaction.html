@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	      crossorigin="anonymous">
+
+	<script  src="{{ url_for('static', filename='js/database.js') }}"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}">
+
+</head>
+<body>
+	<br>
+	<br>
+	<h2> Live Database </h2>
+	<br>
+	<br>
+	<!-- <div>		 -->
+	    <!-- <div class="container"> -->
+		    
+		    <div class="row" style="text-align: left">
+		        <div class="col-xs-2 col-center-block">
+		            <div class="card">
+		                <div class="card-body">
+		                    <form action="/transaction_add" method="post">
+		                        <div class="form-group">
+		                        	<label>Customer: </label>
+		                        	<select name="customer_name" method="GET" action="/">
+									    {% for customer in customers %}
+									        <option value="{{ customer.id }}">{{ customer.firstname }} {{ customer.lastname }}</option>"
+									    {% endfor %}
+									</select>
+									<br>
+									<label>Product: </label>
+									<select name="product_name" method="GET" action="/">
+									    {% for product in products %}
+									    	{% for inv in inventory %}
+									    		{% if inv.productid == product.id %}
+									        <option value="{{ product.id }}">{{ product.name }} Qty left {{ inv.quanity_left }}</option>
+									        {% endif %}
+									        
+									        {% endfor %}									    
+								        {% endfor %}									    
+									    	
+									</select>
+
+									<br>
+									<label for="selling">Date:</label>
+		                            <input type="date" id="selling_date" name="selling_date" value={{ date_today }} readonly>
+									<br>																										
+		                            <input class="form-control" type="number" name="qty_sold" placeholder="Qty Sold" min="1" required>
+
+                       		   </div>		                        
+		                        <button class="btn btn-primary" type="submit">
+		                            Add
+		                        </button>
+
+		                        <button class="btn btn-primary" onclick="myFunction()">Show database</button>
+		                    </form>
+		                </div>
+		            </div>
+		        <!-- </div> -->
+
+		        <br>
+		        <br>
+
+		        <div id="myDIV">
+		            <div class="col-xs-2 col-center-block">
+		                <table class="table table-hover">
+		                    <thead>
+		                    <tr>
+		                        <th>Customer Id</th>		                        
+		                        <th>First Name (from Customer Entity)</th>
+		                        <th>Product Id</th>
+		                        <th>Product Name (from Merch Entity)</th>
+		                        <th>Unit Price (from Merch Entity)</th>		                        
+		                        <th>Selling Date</th>
+		                        <th>Total Sales</th>
+		                        <th></th>
+		                    </tr>
+		                    </thead>
+		                    <tbody>
+		                    {% for transaction in transactions %}
+		                    <tr>
+		                    	{% for customer in customers %}
+		                    		{% if customer.id == transaction.customerid %}
+		                    			<td>{{ customer.id }}</td>
+		                    			<td>{{ customer.firstname }}</td>
+	                    			{% endif %}		                        	
+		                    	{% endfor %}
+		                    	<td>{{ transaction.productid }}</td>
+		                        {% for product in products %}
+		                        	{% if product.id == transaction.productid %}
+		                        		<td>{{ product.name }}</td>
+		                        		<td>{{ product.sale_price }}</td>
+		                        	{% endif %}		                        	
+		                        {% endfor %}
+		                        <td><strong>{{ transaction.date }}</strong></td>
+		                        <td>{{ transaction.total_sales }}</td>
+		                        <td>
+							    <span style="font-size: 0.8em; margin: 0 0 0 10px;" >
+									<a href="/transaction_update/[{{ transaction.customerid }}, {{ transaction.productid }}, {{ transaction.date }}]"><i class="fas fa-pencil-alt"></i></a>
+							    </span>
+						    	<span style="font-size: 0.8em; margin: 0 0 0 10px" >
+						      		<a href="/transaction_delete/[{{ transaction.customerid }}, {{ transaction.productid }}, {{ transaction.date }}]"><i class="fas fa-trash-alt"></i></i></a>
+					    		</span>
+		                        </td>
+		                    </tr>
+		                    {% endfor %}
+		                    </tbody>
+
+		                </table>
+		            </div>
+		        </div>
+		    </div>
+
+		<!-- </div> -->
+
+	</div>
+			    <br>
+		    <br>
+		    <br>
+</body>
+</html>

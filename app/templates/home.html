@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>OMIS 3730</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+
+</head>
+<body>
+  <h1 id="tophead">Database Doors</h1>
+<main class="page-content">
+
+  <div class="card">
+    <div class="content">
+      <h2 class="title">Customer DB</h2>
+      <p class="copy">Interface for cashier</p>  
+      <a href="{{ url_for('transaction') }}" target="_blank"><button class="btn">Open Door</button></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="content">
+      <h2 class="title">Procurment of existing products DB</h2>
+      <p class="copy">Interface for planning</p>
+      <a href="{{ url_for('procurement') }}" target="_blank"><button class="btn">Open Door</button></a>
+    </div>
+  </div>
+
+    <div class="card">
+    <div class="content">
+      <h2 class="title">New products</h2>
+      <p class="copy">Interface for merchandising</p>
+      <a href="{{ url_for('merchandising') }}" target="_blank"><button class="btn">Open Door</button></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="content">
+      <h2 class="title">Customer Registeration</h2>
+      <p class="copy">Interface for registering customers</p>
+      <a href="{{ url_for('customer') }}" target="_blank"><button class="btn">Open Door</button></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="content">
+      <h2 class="title">Master View</h2>
+      <p class="copy">Interface for analyst</p>
+      <a href="{{ url_for('print_ent') }}"><button class="btn">Open Door</button></a>
+    </div>
+  </div>
+
+</main>
+<!-- partial -->
+  
+</body>
+</html>

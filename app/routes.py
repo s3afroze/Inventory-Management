@@ -44,7 +44,6 @@ server = re.server
 
 df = pd.read_csv('demo.cscv', index_col=[0])
 def generate_frontpage():
-    print(df)
     # global df
     # df = pd.read_csv('demo.cscv', index_col=[0])
     return html.Div(
@@ -169,14 +168,7 @@ def print_ent():
 
     return render_template('test.html')
 
-# @app.route('/print_transaction')
-# def print_transaction():
-#     db_file = "app/app.db"
-#     myConnection = sqlite3.connect(db_file)
-#     df = pd.read_sql("SELECT * FROM 'Transaction'", myConnection)
-#     df.to_csv('demo.cscv')
-#     return redirect(url_for('/dash/'))
-
+# ------------------------------ Print function starts ------------------------------
 @app.route('/print_Customer')
 def print_Customer():
     global df
@@ -222,69 +214,13 @@ def print_Procurement():
     df.to_csv('demo.cscv')
     return redirect(url_for('/dash/'))
    
-# Print function ends
-
+# ------------------------------ Print function ends ------------------------------
 
 @app.route('/')
 @app.route('/home')
 def home():
     return render_template('home.html')
 
-# # initial settings
-# @app.route('/index')
-# def index():
-#     entries = Entry.query.all()
-#     return render_template('index.html', entries=entries)
-
-# @app.route('/add', methods=['POST'])
-# def add():
-
-#     if request.method == 'POST':
-#         form = request.form
-#         title = form.get('title')
-#         description = form.get('description')
-#         if not title or description:
-#             entry = Entry(title = title, description = description)
-#             db.session.add(entry)
-#             db.session.commit()
-#             return redirect(url_for('index'))
-
-#     return "Database Updated"
-
-
-# @app.route('/update/<int:id>')
-# def updateRoute(id):
-#     # send back the entry after extraction
-#     if not id or id != 0:
-#         entry = Entry.query.get(id)
-#         return render_template('update.html', entry=entry)
-
-#     return "Database Entry Extracted"
-
-
-# @app.route('/update_entry/<int:id>', methods=['POST'])
-# def update(id):
-#     if not id or id != 0:
-#         entry = Entry.query.get(id)
-#         if entry:
-#             # update title and description from the forms
-#             entry.title = request.form["title"]
-#             entry.description = request.form["description"]
-#             db.session.commit()
-#         return redirect(url_for('index'))
-
-#     return "Entry Extracted"
-
-# @app.route('/delete/<int:id>')
-# def delete(id):
-#     if not id or id != 0:
-#         entry = Entry.query.get(id)
-#         if entry:
-#             db.session.delete(entry)
-#             db.session.commit()
-#         return redirect(url_for('index'))
-
-#     return "Entry Deleted"
 
 # INVENTORY ADJUSTMENT
 
@@ -303,8 +239,6 @@ def inventory_adjust(productid, quantity_adjust):
     if quanity_left<0:
         return quanity_orig
     else:
-        print(inventory)
-        print(f"inventory added {quantity_adjust}")
         db.session.commit()
         return "completed"
 
@@ -319,7 +253,6 @@ def inventory_delete(productid):
 @app.route('/merchandising')
 def merchandising():
     products = Product.query.all()
-    print(products)
     return render_template('merchandising.html', products=products)
 
 @app.route('/merchandising_add', methods=['POST'])
@@ -330,7 +263,6 @@ def merchandising_add():
         unit_cost = form.get('unit_cost')
         sale_price = form.get('unit_price')
 
-        print(form)
         # if not prod_name:
         # create the product first
         product = Product(name = prod_name, sale_price = sale_price, unit_cost = unit_cost)
@@ -408,13 +340,11 @@ import datetime
 def procurement_add():
     if request.method == 'POST':
         form = request.form
-        print(form)
         proc_date = datetime.datetime.strptime(form.get('proc_date'), "%Y-%m-%d")
         rand_sec = random() # in order to avoid issues of pushing multiple actions within a second
         proc_date_time = datetime.datetime.now() + datetime.timedelta(microseconds=rand_sec)                         
         proc_date_time_rounded_off = proc_date_time - datetime.timedelta(microseconds=proc_date_time.microsecond)
 
-        print(proc_date_time_rounded_off)
 
         quantity_purchased = int(form.get('qty_purchased'))
         product_name = form.get('product_name')
@@ -446,8 +376,6 @@ def procurement_updateRoute(listOfObjects):
     datetime_el = res[1]
     proc_date_time = datetime.datetime.strptime(datetime_el, "%Y-%m-%d %H:%M:%S")
     date_today=datetime.datetime.now()
-
-    print(proc_date_time)
 
     procurement = Procurement.query.get((productid, proc_date_time))
     product = Product.query.get(productid)
@@ -590,7 +518,6 @@ def transaction():
     transactions = Transaction.query.all()
     date_today = datetime.datetime.now()
     inventory = Inventory.query.all()
-    print(inventory)
     return render_template('transaction.html', products=products, customers = customers, 
         transactions=transactions, date_today=date_today, inventory=inventory)
 
@@ -609,7 +536,6 @@ def transaction_add():
         item = Product.query.get(prodid)
         unit_price = item.sale_price
         productid = item.id
-        print(productid)
         total_sales = unit_price*quantity_sold
 
         customerid = form.get('customer_name')
@@ -626,7 +552,6 @@ def transaction_add():
                                 customerid = customerid, total_sales = total_sales, quantity_sold=quantity_sold)
         # what if inventory runs out
 
-        print(transaction)
         db.session.add(transaction)
         db.session.commit()
         return redirect(url_for('transaction'))
@@ -661,17 +586,10 @@ def transaction_update(listOfObjects):
     form = request.form
     # send back the entry after extraction
     res = listOfObjects.strip('][').split(', ') 
-    print(res)
-    print(res)
-    print(res)
-    print(res)
     customerid = res[0]
     productid = res[1]
     trans_date = res[2]
 
-
-
-    print(trans_date)
     trans_date_time = datetime.datetime.strptime(trans_date, "%Y-%m-%d %H:%M:%S")
 
     transaction = Transaction.query.get((customerid, productid, trans_date_time))

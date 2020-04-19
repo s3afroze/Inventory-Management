@@ -29,4 +29,4 @@ You can run the app on your browser at http://127.0.0.1:5000/
 
 ## Screenshots
 
-[demo.png](demo.png)
+![demo.png](demo.png)

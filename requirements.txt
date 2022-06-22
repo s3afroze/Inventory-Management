@@ -22,7 +22,7 @@ Jinja2>=2.10.1
 lasio==0.24.1
 Mako==1.0.7
 MarkupSafe==1.0
-numpy==1.18.2
+numpy==1.22.0
 pandas==1.0.3
 plotly==4.5.4
 pycparser==2.20

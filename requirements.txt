@@ -20,7 +20,7 @@ future==0.18.2
 itsdangerous==0.24
 Jinja2>=2.10.1
 lasio==0.24.1
-Mako==1.0.7
+Mako==1.2.2
 MarkupSafe==1.0
 numpy==1.18.2
 pandas==1.0.3
